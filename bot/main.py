@@ -15,7 +15,30 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/encrypt <password, shift> - Applica il cifrario di Cesare alla password"
     )
 
+async def password(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Inserisci la lunghezza.")
+        return
+    try:
+        num_words=int(context.args[0])
+        pwd=generate_password(num_words)
+        await update.message.reply_text(f"Password generata:\n{pwd}")
+    except ValueError:
+        await update.message.reply_text("Lunghezza non valida (min 4).")
+
+async def check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Uso: /check <password>")
+        return
+    user_pwd=context.args[0]
+    if is_strong_password(user_pwd):
+        await update.message.reply_text("La password è forte")
+    else:
+        await update.message.reply_text("La password è debole")
+
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("password", password))
+    app.add_handler(CommandHandler("check", check_password))
     app.run_polling()
