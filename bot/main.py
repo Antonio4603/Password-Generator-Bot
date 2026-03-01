@@ -10,7 +10,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Bot Generatore di Password\n\n"
         "Comandi:\n"
         "/password <numero_parole>\n"
-        "/check <tua_password> - Verifica se la password è sicura\n"
+        "/check <tua_password> - Verifica se la password Ã¨ sicura\n"
         "/pin <numero_cifre> - Genera un pin\n"
         "/encrypt <password, shift> - Applica il cifrario di Cesare alla password"
     )
@@ -32,9 +32,9 @@ async def check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     user_pwd=context.args[0]
     if is_strong_password(user_pwd):
-        await update.message.reply_text("La password è forte")
+        await update.message.reply_text("La password Ã¨ forte")
     else:
-        await update.message.reply_text("La password è debole")
+        await update.message.reply_text("La password Ã¨ debole")
 
 async def pin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     length=4
