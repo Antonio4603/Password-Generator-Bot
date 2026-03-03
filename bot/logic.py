@@ -1,5 +1,5 @@
 import secrets 
-import stirng
+import string
 
 def generate_password(num_words: int=4) -> str:
 	if num_words<4:
