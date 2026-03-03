@@ -24,3 +24,10 @@ def is_strong_password(password: str) -> bool:
 		if c in string.puntctuation:
 			has_symbol=True
 	return is_long_enough and has_digit and has_upper and has_symbol 	
+	
+def generate_pin(lenght: int=4):
+	result=""
+	for _ in range(lenght):
+		digit=secrets.choice(string.digits)
+		result=result+digit
+		return digit
