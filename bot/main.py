@@ -37,6 +37,38 @@ async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
         "/encrypt <password, shift> - Applica il cifrario di Cesare"
     )
 
+async def password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Genera una password basata sul numero di parole fornito dall'utente."""
+    if not update.message:
+        return
+
+    if not context.args:
+        await update.message.reply_text("Inserisci la lunghezza (es. /password 5).")
+        return
+
+    try:
+        num_words = int(context.args[0])
+        pwd = generate_password(num_words)
+        await update.message.reply_text(f"Password generata:\n{pwd}")
+    except ValueError:
+        await update.message.reply_text("Lunghezza non valida (minimo 4).")
+
+
+async def check_password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Verifica se la password inserita dall'utente e' considerata forte."""
+    if not update.message:
+        return
+
+    if not context.args:
+        await update.message.reply_text("Uso: /check <password>")
+        return
+
+    user_pwd = context.args[0]
+    if is_strong_password(user_pwd):
+        await update.message.reply_text("La password e' forte")
+    else:
+        await update.message.reply_text("La password e' debole")
+
 def main() -> None:
     """Configura e avvia il bot Telegram."""
     if not TOKEN:
@@ -46,6 +78,8 @@ def main() -> None:
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("password", password))
+    app.add_handler(CommandHandler("check", check_password))
     app.run_polling()
 
 
