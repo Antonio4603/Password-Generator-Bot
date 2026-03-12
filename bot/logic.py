@@ -33,3 +33,21 @@ def generate_password(num_words: int = 4) -> str:
         word = secrets.choice(word_list)
         words.append(word)
     return "-".join(words)
+    
+
+def is_strong_password(password: str) -> bool:
+    """
+    Verifica se una password rispetta i criteri minimi di sicurezza.
+
+    Criteri:
+    - Almeno 15 caratteri
+    - Almeno un numero
+    - Almeno una maiuscola
+    - Almeno un simbolo di punteggiatura
+    """
+    is_long_enough = len(password) >= 15
+    has_digit = any(c.isdigit() for c in password)
+    has_upper = any(c.isupper() for c in password)
+    has_symbol = any(c in string.punctuation for c in password)
+
+    return is_long_enough and has_digit and has_upper and has_symbol
