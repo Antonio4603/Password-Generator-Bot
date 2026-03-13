@@ -51,3 +51,13 @@ def is_strong_password(password: str) -> bool:
     has_symbol = any(c in string.punctuation for c in password)
 
     return is_long_enough and has_digit and has_upper and has_symbol
+    
+def generate_pin(length: int = 4) -> str:
+    """
+    Genera un PIN numerico casuale della lunghezza specificata.
+    """
+    result = ""
+    for _ in range(length):
+        digit = secrets.choice(string.digits)
+        result = result + digit
+    return result    
