@@ -32,3 +32,11 @@ def test_is_strong_password_false() -> None:
     """Testa una password che fallisce i criteri di sicurezza perché troppo corta."""
     pwd = "Abc12!"
     assert is_strong_password(pwd) is False
+
+
+def test_generate_pin_is_numeric() -> None:
+    """Verifica che il PIN generato contenga solo cifre e rispetti la lunghezza."""
+    length = 6
+    res = generate_pin(length)
+    assert res.isdigit()
+    assert len(res) == length
