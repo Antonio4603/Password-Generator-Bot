@@ -60,4 +60,22 @@ def generate_pin(length: int = 4) -> str:
     for _ in range(length):
         digit = secrets.choice(string.digits)
         result = result + digit
+    return result
+
+def cesar_cipher(text: str, shift: int = 3) -> str:
+    """
+    Applica il cifrario di Cesare a una stringa di testo.
+
+    Sposta i caratteri alfabetici e numerici del valore 'shift'.
+    I simboli rimangono invariati.
+    """
+    result = ""
+    for char in text:
+        if char.isalpha():
+            start = ord('a') if char.islower() else ord('A')
+            result += chr((ord(char) - start + shift) % 26 + start)
+        elif char.isdigit():
+            result += chr((ord(char) - ord('0') + shift) % 10 + ord('0'))
+        else:
+            result += char
     return result    
