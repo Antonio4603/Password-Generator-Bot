@@ -1,0 +1,40 @@
+name: CI bot
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout del codice
+      uses: actions/checkout@v4
+
+    - name: Configurazione Python 3.12.2
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12.2"
+        cache: 'pip' 
+
+    - name: Installazione dipendenze
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: isort
+      run: isort --check-only .
+
+    - name: Flake8
+      run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: MyPy
+      run: mypy .
+
+    - name: Pylint
+      run: pylint bot/ tests/
+
+    - name: Esecuzione Test
+      run: python -m pytest -v
