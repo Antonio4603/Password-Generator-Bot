@@ -40,3 +40,12 @@ def test_generate_pin_is_numeric() -> None:
     res = generate_pin(length)
     assert res.isdigit()
     assert len(res) == length
+
+
+def test_cesar_cipher() -> None:
+    """Verifica la correttezza della cifratura e della decifratura (inversione)."""
+    original = "Abc1"
+    shift = 3
+    encrypted = cesar_cipher(original, shift)
+    assert encrypted == "Def4"
+    assert cesar_cipher(encrypted, -shift) == original
