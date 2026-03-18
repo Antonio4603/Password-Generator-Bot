@@ -19,10 +19,10 @@ def generate_password(num_words: int = 4) -> str:
         str: La password generata (es. 'mela-libro-fiume-razzo').
 
     Raises:
-        ValueError: Se num_words è inferiore a 4.
+        ValueError: Se num_words e' inferiore a 4.
     """
     if num_words < 4:
-        raise ValueError("La lunghezza minima è 4 parole.")
+        raise ValueError("La lunghezza minima e' 4 parole.")
 
     word_list = [
         "aiuola", "mela", "nuvola", "tastiera",
