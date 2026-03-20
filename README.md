@@ -1,4 +1,25 @@
-# Password-Generator-Bot
+# **Password Generator Bot**
+
+This Telegram bot combines versatility and security, helping you effectively manage your digital security. Using the Diceware method, it generates strong, memorable passwords and includes tools for encryption and strength analysis.
+
+<img width="1021" height="527" alt="image" src="https://github.com/user-attachments/assets/3de7bab9-9cd0-4969-9624-80779379e213" />
+
+
+# **Project Structure**
+
+<img width="266" height="394" alt="image" src="https://github.com/user-attachments/assets/1bd01eae-4cab-4ed8-89f5-187aa0d953fc" />
+
+
+
+# **Key Features**
+
+**1) Diceware Generation**: Produce strong passphrases using a curated list of real words. Easy to memorize for humans, but highly resistant to brute-force attacks.
+
+**2) Strength Checker**: Analyze your password and receive immediate feedback on its complexity and security level.
+
+**3) PIN Generator**: Quickly generate random numerical codes for devices or quick unlocks.
+
+**4) Caesar Cipher**: Tool to encrypt and decrypt messages using one of the earliest and simplest encryption techniques.
 
 # **Installation**
 
