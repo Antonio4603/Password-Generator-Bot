@@ -47,7 +47,7 @@ pip install -r requirements.txt
 
 **3) Configuration:**
 
-Create a .env file in the project root and add your Telegram API Token obtained from @BotFather
+Create a .env file in the project root and add your Telegram API Token obtained from [BotFather](https://telegram.me/BotFather)
 
 Below there is an example for your .env file:
 
