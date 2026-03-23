@@ -2,12 +2,13 @@
 
 This Telegram bot combines versatility and security, helping you effectively manage your digital security. Using the Diceware method, it generates strong, memorable passwords and includes tools for encryption and strength analysis.
 
-<img width="1021" height="527" alt="image" src="https://github.com/user-attachments/assets/3de7bab9-9cd0-4969-9624-80779379e213" />
+<img width="1015" height="373" alt="image" src="https://github.com/user-attachments/assets/fc410725-aa2f-4261-a5f2-af19c2d281d1" />
+
 
 
 # **Project Structure**
 
-<img width="266" height="394" alt="image" src="https://github.com/user-attachments/assets/1bd01eae-4cab-4ed8-89f5-187aa0d953fc" />
+<img width="263" height="392" alt="image" src="https://github.com/user-attachments/assets/1ac927fd-b89c-42fe-9dad-288be49dc150" />
 
 
 
