@@ -3,10 +3,10 @@ Modulo di test per la logica del Password Generator Bot.
 Questo modulo contiene i test unitari per la generazione di password,
 PIN e cifratura di Cesare.
 """
+
 import pytest
 
-from bot.logic import (cesar_cipher, generate_password, generate_pin,
-                       is_strong_password)
+from bot.logic import cesar_cipher, generate_password, generate_pin, is_strong_password
 
 
 def test_generate_password_count() -> None:
