@@ -12,11 +12,14 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 try:
-    from bot.logic import (cesar_cipher, generate_password, generate_pin,
-                           is_strong_password)
+    from bot.logic import (
+        cesar_cipher,
+        generate_password,
+        generate_pin,
+        is_strong_password,
+    )
 except ImportError:
-    from logic import (cesar_cipher, generate_password, generate_pin,
-                       is_strong_password)
+    from logic import cesar_cipher, generate_password, generate_pin, is_strong_password
 
 
 load_dotenv()
@@ -36,6 +39,7 @@ async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
         "/pin <numero_cifre> - Genera un pin\n"
         "/encrypt <password, shift> - Applica il cifrario di Cesare"
     )
+
 
 async def password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Genera una password basata sul numero di parole fornito dall'utente."""
@@ -69,6 +73,7 @@ async def check_password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     else:
         await update.message.reply_text("La password e' debole")
 
+
 async def pin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Genera un PIN numerico della lunghezza desiderata (default 4)."""
     if not update.message:
@@ -83,7 +88,7 @@ async def pin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             return
 
     res = generate_pin(length)
-    await update.message.reply_text(f"Il tuo PIN: `{res}`", parse_mode='MarkdownV2')
+    await update.message.reply_text(f"Il tuo PIN: `{res}`", parse_mode="MarkdownV2")
 
 
 async def encrypt(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -98,11 +103,11 @@ async def encrypt(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         shift = int(context.args[1]) if len(context.args) > 1 else 3
         encrypted = cesar_cipher(text_to_encrypt, shift)
         await update.message.reply_text(
-            f"Testo cifrato: `{encrypted}`",
-            parse_mode='MarkdownV2'
+            f"Testo cifrato: `{encrypted}`", parse_mode="MarkdownV2"
         )
     except ValueError:
         await update.message.reply_text("Lo spostamento deve essere un numero intero.")
+
 
 def main() -> None:
     """Configura e avvia il bot Telegram."""
@@ -117,7 +122,7 @@ def main() -> None:
     app.add_handler(CommandHandler("check", check_password))
     app.add_handler(CommandHandler("pin", pin))
     app.add_handler(CommandHandler("encrypt", encrypt))
-    
+
     app.run_polling()
 
 
