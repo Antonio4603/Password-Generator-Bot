@@ -4,6 +4,7 @@ Modulo per la logica di generazione password e cifratura.
 Questo modulo fornisce utility per la creazione di password sicure,
 generazione di PIN numerici, verifica della robustezza e cifratura base.
 """
+
 import secrets
 import string
 
@@ -25,15 +26,21 @@ def generate_password(num_words: int = 4) -> str:
         raise ValueError("La lunghezza minima e' 4 parole.")
 
     word_list = [
-        "aiuola", "mela", "nuvola", "tastiera",
-        "fiume", "scoglio", "razzo", "libro"
+        "aiuola",
+        "mela",
+        "nuvola",
+        "tastiera",
+        "fiume",
+        "scoglio",
+        "razzo",
+        "libro",
     ]
     words = []
     for _ in range(num_words):
         word = secrets.choice(word_list)
         words.append(word)
     return "-".join(words)
-    
+
 
 def is_strong_password(password: str) -> bool:
     """
@@ -51,7 +58,8 @@ def is_strong_password(password: str) -> bool:
     has_symbol = any(c in string.punctuation for c in password)
 
     return is_long_enough and has_digit and has_upper and has_symbol
-    
+
+
 def generate_pin(length: int = 4) -> str:
     """
     Genera un PIN numerico casuale della lunghezza specificata.
@@ -61,6 +69,7 @@ def generate_pin(length: int = 4) -> str:
         digit = secrets.choice(string.digits)
         result = result + digit
     return result
+
 
 def cesar_cipher(text: str, shift: int = 3) -> str:
     """
@@ -72,10 +81,10 @@ def cesar_cipher(text: str, shift: int = 3) -> str:
     result = ""
     for char in text:
         if char.isalpha():
-            start = ord('a') if char.islower() else ord('A')
+            start = ord("a") if char.islower() else ord("A")
             result += chr((ord(char) - start + shift) % 26 + start)
         elif char.isdigit():
-            result += chr((ord(char) - ord('0') + shift) % 10 + ord('0'))
+            result += chr((ord(char) - ord("0") + shift) % 10 + ord("0"))
         else:
             result += char
-    return result    
+    return result
